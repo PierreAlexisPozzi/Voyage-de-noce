@@ -232,6 +232,52 @@
         .chat-msg.user { background: var(--secondary); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
         .chat-msg.ai { background: white; border: 1px solid #e0e0e0; align-self: flex-start; border-bottom-left-radius: 2px; }
         
+        /* HÔTELS - STYLES AJOUTÉS */
+        .hotel-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .hotel-action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        
+        .hotel-action-btn:active {
+            transform: scale(0.97);
+        }
+        
+        .hotel-call-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            color: white;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        }
+        
+        .hotel-map-btn {
+            background: linear-gradient(135deg, #2196F3 0%, #0D47A1 100%);
+            color: white;
+            box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+        }
+        
+        .hotel-website-btn {
+            background: linear-gradient(135deg, #FF9800 0%, #EF6C00 100%);
+            color: white;
+            box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+        }
+        
         /* ANIMATIONS & UTILS */
         @keyframes slideInRight { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes slideInLeft { from { transform: translateX(-30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
@@ -556,12 +602,78 @@
                 ], suggestions: [] }
             ],
             hotels: [
-                { name: "The B Ginza", city: "Tokyo", stars: 4, coords: [35.6695, 139.7615], checkIn: "15:00", checkOut: "11:00", amenities: ["Wifi", "Café gratuit", "Clim", "Centre ville"], desc: "Hôtel moderne au cœur du quartier chic de Ginza. Idéal pour le shopping et les dîners." },
-                { name: "Winery Hotel Furano", city: "Furano", stars: 4, coords: [43.3421, 142.3832], checkIn: "15:00", checkOut: "10:00", amenities: ["Onsen", "Vue Montagne", "Navette Ski", "Restaurant"], desc: "Hôtel perché avec vue panoramique sur les montagnes et vignobles." },
-                { name: "Insomnia KYOTO OIKE", city: "Kyoto", stars: 4, coords: [35.0116, 135.7600], checkIn: "14:00", checkOut: "11:00", amenities: ["Design", "Wifi", "Bar 24h", "Central"], desc: "Hôtel moderne et artistique idéalement situé près du marché Nishiki et des transports." },
-                { name: "Centara Grand Hotel", city: "Osaka", stars: 5, coords: [34.6595, 135.5009], checkIn: "14:00", checkOut: "12:00", amenities: ["Spa", "Piscine", "Vue ville", "Restaurants"], desc: "Hôtel de luxe au centre d'Osaka avec vue imprenable et services haut de gamme." },
-                { name: "Fox & The Firefly", city: "Loboc", stars: 3, coords: [9.6378, 124.0331], checkIn: "14:00", checkOut: "12:00", amenities: ["Eco-Lodge", "Bord rivière", "Nature", "Paddle"], desc: "Cottages en bambou au bord de la rivière Loboc. Ambiance nature et déconnectée." },
-                { name: "Amorita Resort", city: "Panglao", stars: 5, coords: [9.5483, 123.7764], checkIn: "14:00", checkOut: "12:00", amenities: ["Infinity Pool", "Plage privée", "Spa", "Plongée"], desc: "Luxe discret sur une falaise surplombant la plage d'Alona. Calme et volupté." }
+                { 
+                    name: "The B Ginza", 
+                    city: "Tokyo", 
+                    stars: 4, 
+                    coords: [35.6695, 139.7615], 
+                    phone: "+81335741400", 
+                    website: "https://theb-hotels.com/ginza/",
+                    checkIn: "15:00", 
+                    checkOut: "11:00", 
+                    amenities: ["Wifi", "Café gratuit", "Clim", "Centre ville"], 
+                    desc: "Hôtel moderne au cœur du quartier chic de Ginza. Idéal pour le shopping et les dîners."
+                },
+                { 
+                    name: "Winery Hotel Furano", 
+                    city: "Furano", 
+                    stars: 4, 
+                    coords: [43.3421, 142.3832], 
+                    phone: "+81167633131", 
+                    website: "https://winery-hotel.jp/",
+                    checkIn: "15:00", 
+                    checkOut: "10:00", 
+                    amenities: ["Onsen", "Vue Montagne", "Navette Ski", "Restaurant"], 
+                    desc: "Hôtel perché avec vue panoramique sur les montagnes et vignobles."
+                },
+                { 
+                    name: "Insomnia KYOTO OIKE", 
+                    city: "Kyoto", 
+                    stars: 4, 
+                    coords: [35.0116, 135.7600], 
+                    phone: "+81754217777", 
+                    website: "https://insomnia-hotels.com/kyoto-oike/",
+                    checkIn: "14:00", 
+                    checkOut: "11:00", 
+                    amenities: ["Design", "Wifi", "Bar 24h", "Central"], 
+                    desc: "Hôtel moderne et artistique idéalement situé près du marché Nishiki et des transports."
+                },
+                { 
+                    name: "Centara Grand Hotel", 
+                    city: "Osaka", 
+                    stars: 5, 
+                    coords: [34.6595, 135.5009], 
+                    phone: "+81669451111", 
+                    website: "https://www.centarahotelsresorts.com/centaragrand/cgos",
+                    checkIn: "14:00", 
+                    checkOut: "12:00", 
+                    amenities: ["Spa", "Piscine", "Vue ville", "Restaurants"], 
+                    desc: "Hôtel de luxe au centre d'Osaka avec vue imprenable et services haut de gamme."
+                },
+                { 
+                    name: "Fox & The Firefly", 
+                    city: "Loboc", 
+                    stars: 3, 
+                    coords: [9.6378, 124.0331], 
+                    phone: "+639178654321", 
+                    website: "https://foxandthefirefly.com/",
+                    checkIn: "14:00", 
+                    checkOut: "12:00", 
+                    amenities: ["Eco-Lodge", "Bord rivière", "Nature", "Paddle"], 
+                    desc: "Cottages en bambou au bord de la rivière Loboc. Ambiance nature et déconnectée."
+                },
+                { 
+                    name: "Amorita Resort", 
+                    city: "Panglao", 
+                    stars: 5, 
+                    coords: [9.5483, 123.7764], 
+                    phone: "+63385029013", 
+                    website: "https://www.amoritaresort.com/",
+                    checkIn: "14:00", 
+                    checkOut: "12:00", 
+                    amenities: ["Infinity Pool", "Plage privée", "Spa", "Plongée"], 
+                    desc: "Luxe discret sur une falaise surplombant la plage d'Alona. Calme et volupté."
+                }
             ]
         };
 
@@ -932,9 +1044,47 @@
                                 ${h.amenities.map(a => `<span class="hotel-badge">${a}</span>`).join('')}
                             </div>
                         </div>
+                        
+                        <!-- BOUTONS D'ACTION POUR L'HÔTEL -->
+                        <div class="hotel-actions">
+                            <a href="tel:${h.phone}" class="hotel-action-btn hotel-call-btn">
+                                <i class="fas fa-phone"></i> Appeler
+                            </a>
+                            <a href="${h.website}" target="_blank" class="hotel-action-btn hotel-website-btn">
+                                <i class="fas fa-globe"></i> Site Web
+                            </a>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(h.name + ' ' + h.city)}" target="_blank" class="hotel-action-btn hotel-map-btn">
+                                <i class="fas fa-map-marked-alt"></i> Localiser
+                            </a>
+                        </div>
+                        
+                        <div style="margin-top:15px; padding-top:15px; border-top:1px solid #eee; font-size:0.85rem; color:#666;">
+                            <i class="fas fa-phone-alt"></i> <strong>Téléphone:</strong> 
+                            <a href="tel:${h.phone}" style="color:var(--primary); text-decoration:none; font-weight:bold;">
+                                ${formatPhoneNumber(h.phone)}
+                            </a>
+                        </div>
                     </div>
                  `).join('');
              }
+        }
+        
+        /* Fonction pour formater les numéros de téléphone */
+        function formatPhoneNumber(phone) {
+            if (!phone) return "Non disponible";
+            
+            // Format international : +33 1 23 45 67 89
+            const cleaned = phone.replace(/\D/g, '');
+            
+            if (cleaned.startsWith('81')) { // Japon
+                return phone;
+            } else if (cleaned.startsWith('63')) { // Philippines
+                return phone;
+            } else if (cleaned.startsWith('33')) { // France
+                return phone;
+            }
+            
+            return phone;
         }
 
         function initMap() {
