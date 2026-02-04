@@ -178,12 +178,6 @@
         .flight-baggage { padding: 12px 20px 0; font-size: 0.85rem; color: #475569; }
         .flight-baggage ul { margin: 8px 0 0 18px; padding: 0; }
         .flight-baggage li { margin-bottom: 6px; line-height: 1.3; }
-
-        .baggage-icons { display: inline-flex; align-items: center; gap: 6px; margin-right: 6px; }
-        .baggage-icon { font-size: 1rem; line-height: 1; }
-        .baggage-icon.pa { color: #1e88e5; }
-        .baggage-icon.coralie { color: #ec407a; }
-======
         .flight-segment { display: flex; padding: 20px; position: relative; }
         .flight-segment:not(:last-child)::after { content: ''; position: absolute; bottom: 0; left: 80px; right: 20px; border-bottom: 1px dashed #e2e8f0; }
         .flight-times-col { display: flex; flex-direction: column; justify-content: space-between; min-width: 60px; text-align: right; padding-right: 15px; border-right: 2px solid var(--primary); position: relative; }
@@ -746,11 +740,7 @@
                     title: "Départ de Paris : France → Japon",
                     date: "20 Février 2026",
                     baggage: [
-
-                            same: true,
-                            people: ["PA", "Coralie"],
-                            detail: "Turkish Airlines (Paris → Tokyo) — 2 valises en soute de 23 kg + 1 valise cabine jusqu'à 8 kg."
-                        }
+                        "Turkish Airlines (Paris → Tokyo) : PA & Coralie — 2 valises en soute de 23 kg + 1 valise cabine jusqu'à 8 kg."
                     ],
                     flights: [
                         {
@@ -769,13 +759,6 @@
                     title: "Objectif neige : Tokyo → Hokkaido",
                     date: "25 Février 2026",
                     baggage: [
-
-                        {
-                            same: true,
-                            people: ["PA", "Coralie"],
-                            detail: "Tokyo → Asahikawa — 1 valise en soute de 20 kg + 1 bagage cabine de 10 kg."
-                        }
-=======
                         "Tokyo → Asahikawa : PA & Coralie — 1 valise en soute de 20 kg + 1 bagage cabine de 10 kg."
                     ],
                     flights: [
@@ -790,11 +773,6 @@
                     title: "Vol vers Kyoto: Hokkaido → Kansai",
                     date: "02 Mars 2026",
                     baggage: [
-                        {
-                            same: true,
-                            people: ["PA", "Coralie"],
-                            detail: "Sapporo → Osaka — 1 valise en soute de 20 kg + 1 bagage cabine de 10 kg."
-                        }
                         "Sapporo → Osaka : PA & Coralie — 1 valise en soute de 20 kg + 1 bagage cabine de 10 kg."
                     ],
                     flights: [
@@ -809,16 +787,6 @@
                     title: "Au Soleil! : Japon → Philippines",
                     date: "06 Mars 2026",
                     baggage: [
-                        {
-                            same: false,
-                            people: ["PA"],
-                            detail: "Osaka → Bohol — 2 valises en soute de 20 kg + 1 bagage cabine."
-                        },
-                        {
-                            same: false,
-                            people: ["Coralie"],
-                            detail: "Osaka → Bohol — 1 valise en soute de 20 kg + 1 bagage cabine."
-                        }
                         "Osaka → Bohol : PA — 2 valises en soute de 20 kg + 1 bagage cabine.",
                         "Osaka → Bohol : Coralie — 1 valise en soute de 20 kg + 1 bagage cabine."
                     ],
@@ -839,11 +807,6 @@
                     title: "Patounes en approche : Philippines → France",
                     date: "13 Mars 2026",
                     baggage: [
-                        {
-                            same: true,
-                            people: ["PA", "Coralie"],
-                            detail: "Bohol → Paris — 1 valise en soute de 25 kg + 1 bagage cabine."
-                        }
                         "Bohol → Paris : PA & Coralie — 1 valise en soute de 25 kg + 1 bagage cabine."
                     ],
                     flights: [
@@ -878,18 +841,6 @@
                         <div class="flight-baggage">
                             <strong>Bagages :</strong>
                             <ul>
-                                ${trip.baggage.map(item => {
-                                    const icons = item.people.map(person => {
-                                        const cls = person === "PA" ? "pa" : "coralie";
-                                        return `<span class="baggage-icon ${cls}" title="${person}">🧳</span>`;
-                                    }).join('');
-                                    return `
-                                        <li>
-                                            <span class="baggage-icons">${icons}</span>
-                                            ${item.detail}
-                                        </li>
-                                    `;
-                                }).join('')}
                                 ${trip.baggage.map(item => `<li>${item}</li>`).join('')}
                             </ul>
                         </div>
