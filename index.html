@@ -175,6 +175,9 @@
         .flight-trip-header { background: #f1f5f9; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; }
         .flight-trip-title { font-weight: bold; color: var(--secondary); font-size: 1rem; display: flex; align-items: center; gap: 8px; }
         .flight-trip-date { font-size: 0.85rem; color: #64748b; background: white; padding: 4px 10px; border-radius: 20px; }
+        .flight-baggage { padding: 12px 20px 0; font-size: 0.85rem; color: #475569; }
+        .flight-baggage ul { margin: 8px 0 0 18px; padding: 0; }
+        .flight-baggage li { margin-bottom: 6px; line-height: 1.3; }
         .flight-segment { display: flex; padding: 20px; position: relative; }
         .flight-segment:not(:last-child)::after { content: ''; position: absolute; bottom: 0; left: 80px; right: 20px; border-bottom: 1px dashed #e2e8f0; }
         .flight-times-col { display: flex; flex-direction: column; justify-content: space-between; min-width: 60px; text-align: right; padding-right: 15px; border-right: 2px solid var(--primary); position: relative; }
@@ -736,6 +739,9 @@
                 {
                     title: "Départ de Paris : France → Japon",
                     date: "20 Février 2026",
+                    baggage: [
+                        "Turkish Airlines (Paris → Tokyo) : PA & Coralie — 2 valises en soute de 23 kg + 1 valise cabine jusqu'à 8 kg."
+                    ],
                     flights: [
                         {
                             depCode: "CDG", depCity: "Paris", depTime: "18:50",
@@ -752,6 +758,9 @@
                 {
                     title: "Objectif neige : Tokyo → Hokkaido",
                     date: "25 Février 2026",
+                    baggage: [
+                        "Tokyo → Asahikawa : PA & Coralie — 1 valise en soute de 20 kg + 1 bagage cabine de 10 kg."
+                    ],
                     flights: [
                         {
                             depCode: "HND", depCity: "Tokyo", depTime: "11:10",
@@ -763,6 +772,9 @@
                 {
                     title: "Vol vers Kyoto: Hokkaido → Kansai",
                     date: "02 Mars 2026",
+                    baggage: [
+                        "Sapporo → Osaka : PA & Coralie — 1 valise en soute de 20 kg + 1 bagage cabine de 10 kg."
+                    ],
                     flights: [
                         {
                             depCode: "CTS", depCity: "Sapporo", depTime: "14:00",
@@ -774,6 +786,10 @@
                 {
                     title: "Au Soleil! : Japon → Philippines",
                     date: "06 Mars 2026",
+                    baggage: [
+                        "Osaka → Bohol : PA — 2 valises en soute de 20 kg + 1 bagage cabine.",
+                        "Osaka → Bohol : Coralie — 1 valise en soute de 20 kg + 1 bagage cabine."
+                    ],
                     flights: [
                         {
                             depCode: "KIX", depCity: "Osaka", depTime: "19:35",
@@ -790,6 +806,9 @@
                 {
                     title: "Patounes en approche : Philippines → France",
                     date: "13 Mars 2026",
+                    baggage: [
+                        "Bohol → Paris : PA & Coralie — 1 valise en soute de 25 kg + 1 bagage cabine."
+                    ],
                     flights: [
                         {
                             depCode: "TAG", depCity: "Panglao", depTime: "18:50",
@@ -818,6 +837,14 @@
                         <div class="flight-trip-title"><i class="fas fa-plane-departure"></i> ${trip.title}</div>
                         <div class="flight-trip-date">${trip.date}</div>
                     </div>
+                    ${trip.baggage ? `
+                        <div class="flight-baggage">
+                            <strong>Bagages :</strong>
+                            <ul>
+                                ${trip.baggage.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
                     ${trip.flights.map(segment => `
                         <div class="flight-segment">
                             <div class="flight-times-col">
