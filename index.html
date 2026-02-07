@@ -289,6 +289,57 @@
         .user-pin { width: 20px; height: 20px; border-radius: 50%; background: #2196f3; border: 3px solid white; box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.3); position: relative; }
         .user-pin::after { content: ''; width: 100%; height: 100%; border-radius: 50%; background: rgba(33, 150, 243, 0.5); position: absolute; top: 0; left: 0; animation: pulse 2s infinite; z-index: -1; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 0.8; } 70% { transform: scale(2.5); opacity: 0; } 100% { transform: scale(1); opacity: 0; } }
+
+        /* VALISE */
+        .packing-intro {
+            background: #fff;
+            padding: 18px;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        .packing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+        @media (min-width: 768px) {
+            .packing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        .packing-card {
+            background: white;
+            border-radius: 16px;
+            padding: 18px 18px 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--primary);
+        }
+        .packing-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .packing-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .packing-list li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.4; }
+        .packing-list li::before { content: "•"; color: var(--secondary); font-weight: bold; }
+        .packing-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .packing-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .packing-note { font-size: 0.85rem; color: #64748b; margin-top: 12px; }
     </style>
 </head>
 <body>
@@ -324,6 +375,7 @@
             <a href="#" class="nav-link" onclick="navigate('flights')"><i class="fas fa-plane"></i> Vols</a>
             <a href="#" class="nav-link" onclick="navigate('map')"><i class="fas fa-globe-asia"></i> Carte</a>
             <a href="#" class="nav-link" onclick="navigate('hotels')"><i class="fas fa-hotel"></i> Hébergements</a>
+            <a href="#" class="nav-link" onclick="navigate('packing')"><i class="fas fa-suitcase-rolling"></i> Valise</a>
             <a href="#" class="nav-link" onclick="navigate('converter')"><i class="fas fa-exchange-alt"></i> Convertisseur</a>
         </nav>
 
@@ -410,6 +462,123 @@
                         <i class="fas fa-sync-alt"></i> Actualiser les taux
                     </button>
                     <p id="rate-info" style="font-size:0.85rem; color:#999; margin-top:12px;">Taux mis à jour automatiquement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. VALISE -->
+        <section id="packing" class="section">
+            <h2 style="margin-bottom: 15px;">🧳 Liste valise (selon planning)</h2>
+            <div class="packing-intro">
+                <strong>Basé sur :</strong> Tokyo & Kyoto en hiver, Hokkaido (ski à Furano), Osaka, puis Bohol/Panglao aux Philippines (plages, plongée, excursions).
+                <div class="packing-note">Astuce : prévoyez un sac « cabine/avion » pour les vols intérieurs et un sac étanche pour les sorties en mer.</div>
+            </div>
+            <div class="packing-grid">
+                <div class="packing-card">
+                    <h3>⛷️ Tenue complète de ski (Hokkaido)</h3>
+                    <ul class="packing-list">
+                        <li><strong>Couche 1 (thermique)</strong> : sous-vêtements thermiques haut + bas (x2 à x3)</li>
+                        <li><strong>Couche 2 (isolante)</strong> : polaire / doudoune légère / laine mérinos</li>
+                        <li><strong>Couche 3 (protection)</strong> : veste + pantalon de ski imperméables</li>
+                        <li>Chaussettes de ski (x3)</li>
+                        <li>Gants de ski + sous-gants</li>
+                        <li>Bonnet + tour de cou / cagoule</li>
+                        <li>Masque de ski + lunettes de soleil catégorie 3</li>
+                        <li>Crème solaire haute protection + stick lèvres</li>
+                        <li>Chaufferettes (mains/pieds)</li>
+                    </ul>
+                    <div class="packing-tags">
+                        <span class="packing-tag">Furano</span>
+                        <span class="packing-tag">Onsen</span>
+                        <span class="packing-tag">Ski nocturne</span>
+                    </div>
+                    <div class="packing-note">Prévoir une tenue dédiée à l'onsen (serviette + tenue propre).</div>
+                </div>
+
+                <div class="packing-card">
+                    <h3>🏙️ Japon urbain & temples</h3>
+                    <ul class="packing-list">
+                        <li>Manteau chaud + doudoune légère</li>
+                        <li>Pulls / sweats (x3) + t-shirts manches longues</li>
+                        <li>Pantalons confortables (x3)</li>
+                        <li>Chaussures de marche (déjà rodées)</li>
+                        <li>Écharpe + bonnet fin</li>
+                        <li>Tenue plus habillée (dîner Ginza / Osaka)</li>
+                        <li>Chaussons / claquettes (hôtels, ryokan)</li>
+                    </ul>
+                    <div class="packing-tags">
+                        <span class="packing-tag">Tokyo</span>
+                        <span class="packing-tag">Kyoto</span>
+                        <span class="packing-tag">Osaka</span>
+                    </div>
+                </div>
+
+                <div class="packing-card">
+                    <h3>🌴 Philippines & plages</h3>
+                    <ul class="packing-list">
+                        <li>Maillots de bain (x2 à x3)</li>
+                        <li>Shorts / robes légères / t-shirts respirants</li>
+                        <li>Rashguard ou t-shirt anti-UV (snorkeling)</li>
+                        <li>Serviette microfibre + sac étanche</li>
+                        <li>Sandales / tongs + chaussures aquatiques</li>
+                        <li>Chapeau / casquette + lunettes polarisées</li>
+                        <li>Crème solaire SPF50 + après-soleil</li>
+                        <li>Anti-moustiques tropiques</li>
+                    </ul>
+                    <div class="packing-tags">
+                        <span class="packing-tag">Panglao</span>
+                        <span class="packing-tag">Balicasag</span>
+                        <span class="packing-tag">Plongée</span>
+                    </div>
+                </div>
+
+                <div class="packing-card">
+                    <h3>🎒 Excursions & activités</h3>
+                    <ul class="packing-list">
+                        <li>Sac à dos de journée</li>
+                        <li>Gourde isotherme</li>
+                        <li>Petite trousse de secours (pansements, antiseptique)</li>
+                        <li>Médicaments personnels + anti-maux de transport</li>
+                        <li>Imperméable compact / poncho</li>
+                        <li>Lampe frontale (cascades / sorties tôt)</li>
+                        <li>Snacks / barres énergétiques</li>
+                    </ul>
+                    <div class="packing-tags">
+                        <span class="packing-tag">Cascades</span>
+                        <span class="packing-tag">Chocolate Hills</span>
+                        <span class="packing-tag">Danao Park</span>
+                    </div>
+                </div>
+
+                <div class="packing-card">
+                    <h3>📄 Documents & argent</h3>
+                    <ul class="packing-list">
+                        <li>Passeports + copies papier & numériques</li>
+                        <li>Billets d'avion + réservations hôtels</li>
+                        <li>Assurance voyage + contacts d'urgence</li>
+                        <li>Permis international (si besoin)</li>
+                        <li>Cartes bancaires + un peu de cash (JPY/PHP)</li>
+                    </ul>
+                    <div class="packing-tags">
+                        <span class="packing-tag">Vols</span>
+                        <span class="packing-tag">Transferts</span>
+                    </div>
+                </div>
+
+                <div class="packing-card">
+                    <h3>🔌 Tech & confort</h3>
+                    <ul class="packing-list">
+                        <li>Adaptateur prise Japon + Philippines</li>
+                        <li>Batterie externe + câbles</li>
+                        <li>Appareil photo / GoPro + étui étanche</li>
+                        <li>Écouteurs + petit coussin de voyage</li>
+                        <li>Masque de sommeil + bouchons d'oreilles</li>
+                        <li>Carte SIM/eSIM locale ou pocket Wi-Fi</li>
+                    </ul>
+                    <div class="packing-tags">
+                        <span class="packing-tag">Vols longs</span>
+                        <span class="packing-tag">Plongée</span>
+                    </div>
                 </div>
             </div>
         </section>
