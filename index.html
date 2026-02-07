@@ -328,8 +328,25 @@
             flex-direction: column;
             gap: 8px;
         }
-        .packing-list li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.4; }
-        .packing-list li::before { content: "•"; color: var(--secondary); font-weight: bold; }
+        .packing-list li { display: flex; line-height: 1.4; }
+        .packing-item {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            cursor: pointer;
+            width: 100%;
+        }
+        .packing-item input {
+            margin-top: 3px;
+            accent-color: var(--primary);
+        }
+        .packing-item span {
+            transition: color 0.2s ease, text-decoration-color 0.2s ease;
+        }
+        .packing-item input:checked + span {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
         .packing-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
         .packing-tag {
             background: #f1f5f9;
@@ -477,15 +494,15 @@
                 <div class="packing-card">
                     <h3>⛷️ Tenue complète de ski (Hokkaido)</h3>
                     <ul class="packing-list">
-                        <li><strong>Couche 1 (thermique)</strong> : sous-vêtements thermiques haut + bas (x2 à x3)</li>
-                        <li><strong>Couche 2 (isolante)</strong> : polaire / doudoune légère / laine mérinos</li>
-                        <li><strong>Couche 3 (protection)</strong> : veste + pantalon de ski imperméables</li>
-                        <li>Chaussettes de ski (x3)</li>
-                        <li>Gants de ski + sous-gants</li>
-                        <li>Bonnet + tour de cou / cagoule</li>
-                        <li>Masque de ski + lunettes de soleil catégorie 3</li>
-                        <li>Crème solaire haute protection + stick lèvres</li>
-                        <li>Chaufferettes (mains/pieds)</li>
+                        <li><label class="packing-item"><input type="checkbox"><span><strong>Couche 1 (thermique)</strong> : sous-vêtements thermiques haut + bas (x2 à x3)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span><strong>Couche 2 (isolante)</strong> : polaire / doudoune légère / laine mérinos</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span><strong>Couche 3 (protection)</strong> : veste + pantalon de ski imperméables</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Chaussettes de ski (x3)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Gants de ski + sous-gants</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Bonnet + tour de cou / cagoule</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Masque de ski + lunettes de soleil catégorie 3</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Crème solaire haute protection + stick lèvres</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Chaufferettes (mains/pieds)</span></label></li>
                     </ul>
                     <div class="packing-tags">
                         <span class="packing-tag">Furano</span>
@@ -498,13 +515,13 @@
                 <div class="packing-card">
                     <h3>🏙️ Japon urbain & temples</h3>
                     <ul class="packing-list">
-                        <li>Manteau chaud + doudoune légère</li>
-                        <li>Pulls / sweats (x3) + t-shirts manches longues</li>
-                        <li>Pantalons confortables (x3)</li>
-                        <li>Chaussures de marche (déjà rodées)</li>
-                        <li>Écharpe + bonnet fin</li>
-                        <li>Tenue plus habillée (dîner Ginza / Osaka)</li>
-                        <li>Chaussons / claquettes (hôtels, ryokan)</li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Manteau chaud + doudoune légère</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Pulls / sweats (x3) + t-shirts manches longues</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Pantalons confortables (x3)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Chaussures de marche (déjà rodées)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Écharpe + bonnet fin</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Tenue plus habillée (dîner Ginza / Osaka)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Chaussons / claquettes (hôtels, ryokan)</span></label></li>
                     </ul>
                     <div class="packing-tags">
                         <span class="packing-tag">Tokyo</span>
@@ -516,14 +533,14 @@
                 <div class="packing-card">
                     <h3>🌴 Philippines & plages</h3>
                     <ul class="packing-list">
-                        <li>Maillots de bain (x2 à x3)</li>
-                        <li>Shorts / robes légères / t-shirts respirants</li>
-                        <li>Rashguard ou t-shirt anti-UV (snorkeling)</li>
-                        <li>Serviette microfibre + sac étanche</li>
-                        <li>Sandales / tongs + chaussures aquatiques</li>
-                        <li>Chapeau / casquette + lunettes polarisées</li>
-                        <li>Crème solaire SPF50 + après-soleil</li>
-                        <li>Anti-moustiques tropiques</li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Maillots de bain (x2 à x3)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Shorts / robes légères / t-shirts respirants</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Rashguard ou t-shirt anti-UV (snorkeling)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Serviette microfibre + sac étanche</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Sandales / tongs + chaussures aquatiques</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Chapeau / casquette + lunettes polarisées</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Crème solaire SPF50 + après-soleil</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Anti-moustiques tropiques</span></label></li>
                     </ul>
                     <div class="packing-tags">
                         <span class="packing-tag">Panglao</span>
@@ -535,13 +552,13 @@
                 <div class="packing-card">
                     <h3>🎒 Excursions & activités</h3>
                     <ul class="packing-list">
-                        <li>Sac à dos de journée</li>
-                        <li>Gourde isotherme</li>
-                        <li>Petite trousse de secours (pansements, antiseptique)</li>
-                        <li>Médicaments personnels + anti-maux de transport</li>
-                        <li>Imperméable compact / poncho</li>
-                        <li>Lampe frontale (cascades / sorties tôt)</li>
-                        <li>Snacks / barres énergétiques</li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Sac à dos de journée</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Gourde isotherme</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Petite trousse de secours (pansements, antiseptique)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Médicaments personnels + anti-maux de transport</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Imperméable compact / poncho</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Lampe frontale (cascades / sorties tôt)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Snacks / barres énergétiques</span></label></li>
                     </ul>
                     <div class="packing-tags">
                         <span class="packing-tag">Cascades</span>
@@ -553,11 +570,11 @@
                 <div class="packing-card">
                     <h3>📄 Documents & argent</h3>
                     <ul class="packing-list">
-                        <li>Passeports + copies papier & numériques</li>
-                        <li>Billets d'avion + réservations hôtels</li>
-                        <li>Assurance voyage + contacts d'urgence</li>
-                        <li>Permis international (si besoin)</li>
-                        <li>Cartes bancaires + un peu de cash (JPY/PHP)</li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Passeports + copies papier & numériques</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Billets d'avion + réservations hôtels</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Assurance voyage + contacts d'urgence</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Permis international (si besoin)</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Cartes bancaires + un peu de cash (JPY/PHP)</span></label></li>
                     </ul>
                     <div class="packing-tags">
                         <span class="packing-tag">Vols</span>
@@ -568,12 +585,12 @@
                 <div class="packing-card">
                     <h3>🔌 Tech & confort</h3>
                     <ul class="packing-list">
-                        <li>Adaptateur prise Japon + Philippines</li>
-                        <li>Batterie externe + câbles</li>
-                        <li>Appareil photo / GoPro + étui étanche</li>
-                        <li>Écouteurs + petit coussin de voyage</li>
-                        <li>Masque de sommeil + bouchons d'oreilles</li>
-                        <li>Carte SIM/eSIM locale ou pocket Wi-Fi</li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Adaptateur prise Japon + Philippines</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Batterie externe + câbles</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Appareil photo / GoPro + étui étanche</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Écouteurs + petit coussin de voyage</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Masque de sommeil + bouchons d'oreilles</span></label></li>
+                        <li><label class="packing-item"><input type="checkbox"><span>Carte SIM/eSIM locale ou pocket Wi-Fi</span></label></li>
                     </ul>
                     <div class="packing-tags">
                         <span class="packing-tag">Vols longs</span>
