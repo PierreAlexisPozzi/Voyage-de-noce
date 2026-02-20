@@ -357,6 +357,14 @@
             font-weight: 600;
         }
         .packing-note { font-size: 0.85rem; color: #64748b; margin-top: 12px; }
+
+        .lexicon-grid { display:grid; gap:15px; }
+        .lexicon-card { background:white; border-radius:var(--radius); padding:18px; box-shadow:0 6px 18px rgba(0,0,0,0.06); }
+        .lexicon-card h3 { margin-bottom:10px; color:var(--primary); }
+        .lexicon-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+        .lexicon-list li { font-size:0.95rem; line-height:1.35; padding-left:12px; border-left:3px solid #f1f5f9; }
+        .lexicon-jp { font-weight:700; color:#111827; display:block; }
+        .lexicon-fr { color:#475569; font-size:0.9rem; }
     </style>
 </head>
 <body>
@@ -394,6 +402,7 @@
             <a href="#" class="nav-link" onclick="navigate('hotels')"><i class="fas fa-hotel"></i> Hébergements</a>
             <a href="#" class="nav-link" onclick="navigate('packing')"><i class="fas fa-suitcase-rolling"></i> Valise</a>
             <a href="#" class="nav-link" onclick="navigate('converter')"><i class="fas fa-exchange-alt"></i> Convertisseur</a>
+            <a href="#" class="nav-link" onclick="navigate('lexicon')"><i class="fas fa-language"></i> Lexique utile</a>
         </nav>
 
         <!-- 1. PLANNING -->
@@ -599,6 +608,49 @@
                 </div>
             </div>
         </section>
+
+        <section id="lexicon" class="section">
+            <h2 style="margin-bottom:15px;">🗣️ Lexique utile (Japon)</h2>
+            <p style="margin-bottom:15px; color:#64748b;">Phrases courtes pour le restaurant, konbini, rue, transport et politesse.</p>
+            <div class="lexicon-grid">
+                <div class="lexicon-card">
+                    <h3>🍜 Restaurant</h3>
+                    <ul class="lexicon-list">
+                        <li><span class="lexicon-jp">Sumimasen</span><span class="lexicon-fr">Excusez-moi / pour appeler le serveur.</span></li>
+                        <li><span class="lexicon-jp">Kore o kudasai</span><span class="lexicon-fr">Je prends ça, s'il vous plaît.</span></li>
+                        <li><span class="lexicon-jp">Osusume wa nan desu ka?</span><span class="lexicon-fr">Quelle est votre recommandation ?</span></li>
+                        <li><span class="lexicon-jp">Okaikei onegaishimasu</span><span class="lexicon-fr">L'addition, s'il vous plaît.</span></li>
+                    </ul>
+                </div>
+                <div class="lexicon-card">
+                    <h3>🏪 Konbini</h3>
+                    <ul class="lexicon-list">
+                        <li><span class="lexicon-jp">Atatamemasu ka?</span><span class="lexicon-fr">Vous voulez que je réchauffe ?</span></li>
+                        <li><span class="lexicon-jp">Hai, onegaishimasu</span><span class="lexicon-fr">Oui, s'il vous plaît.</span></li>
+                        <li><span class="lexicon-jp">Fukuro wa irimasen</span><span class="lexicon-fr">Je n'ai pas besoin de sac.</span></li>
+                        <li><span class="lexicon-jp">Kore wa doko desu ka?</span><span class="lexicon-fr">Où est cet article ?</span></li>
+                    </ul>
+                </div>
+                <div class="lexicon-card">
+                    <h3>🧭 Rue & transport</h3>
+                    <ul class="lexicon-list">
+                        <li><span class="lexicon-jp">___ eki wa doko desu ka?</span><span class="lexicon-fr">Où est la gare ___ ?</span></li>
+                        <li><span class="lexicon-jp">Koko ni ikitai desu</span><span class="lexicon-fr">Je veux aller ici.</span></li>
+                        <li><span class="lexicon-jp">Densha wa nan-ji desu ka?</span><span class="lexicon-fr">Le train est à quelle heure ?</span></li>
+                        <li><span class="lexicon-jp">Arigatou gozaimasu</span><span class="lexicon-fr">Merci beaucoup.</span></li>
+                    </ul>
+                </div>
+                <div class="lexicon-card">
+                    <h3>💬 Urgences & aide</h3>
+                    <ul class="lexicon-list">
+                        <li><span class="lexicon-jp">Eigo wa hanasemasu ka?</span><span class="lexicon-fr">Parlez-vous anglais ?</span></li>
+                        <li><span class="lexicon-jp">Tasukete kudasai</span><span class="lexicon-fr">Aidez-moi, s'il vous plaît.</span></li>
+                        <li><span class="lexicon-jp">Daijoubu desu</span><span class="lexicon-fr">Tout va bien.</span></li>
+                        <li><span class="lexicon-jp">Byouin wa doko desu ka?</span><span class="lexicon-fr">Où est l'hôpital ?</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -613,124 +665,135 @@
         /* --- DONNÉES VOYAGE --- */
         const voyageData = {
             days: [
-                { id: 1, date: new Date('2026-02-20'), country: 'International', location: 'Départ Paris → Tokyo', coords: [48.8566, 2.3522], hotel: { name: "Nuit à bord", room: "Vol Paris → Tokyo", link: "#" }, challenge: { title: "✈️ Départ", desc: "Photo du premier départ", hint: "Avant l'embarquement" }, activities: [
-                    { time: "14:50", title: "Départ Le Chesnay", desc: "Trajet vers l'aéroport", coords: null },
-                    { time: "18:50", title: "Vol Paris → Istanbul", desc: "Décollage", coords: [49.0097, 2.5479] },
-                    { time: "02:30", title: "Vol Istanbul → Tokyo", desc: "Correspondance de nuit", coords: [41.2753, 28.7519] }
+                { id: 1, date: new Date('2026-02-20'), country: 'International', location: 'Paris → Istanbul → Tokyo', coords: [48.8566, 2.3522], hotel: { name: "Nuit à bord", room: "Vol Turkish Airlines", link: "#" }, challenge: { title: "✈️ Départ", desc: "Photo du décollage", hint: "Porte d'embarquement" }, activities: [
+                    { time: "14:50", title: "Départ domicile", desc: "Trajet vers CDG", coords: [48.8566, 2.3522] },
+                    { time: "18:50", title: "Vol Paris → Istanbul", desc: "TK1828", coords: [49.0097, 2.5479] },
+                    { time: "02:30", title: "Vol Istanbul → Tokyo", desc: "TK198", coords: [41.2753, 28.7519] }
                 ], suggestions: [] },
-                { id: 2, date: new Date('2026-02-21'), country: 'Japon', location: 'Tokyo (Ginza)', coords: [35.6712, 139.7665], hotel: { name: "The B Ginza", room: "Chambre Double", link: "https://www.google.com/maps/search/?api=1&query=The+B+Ginza" }, challenge: { title: "🏙️ Arrivée Tokyo", desc: "Premiers pas à Ginza", hint: "Devant l'hôtel" }, activities: [
-                    { time: "19:45", title: "Arrivée Tokyo", desc: "Transfert vers Ginza", coords: [35.5494, 139.7798] },
-                    { time: "22:00", title: "Hôtel B Ginza", desc: "Installation", coords: [35.6712, 139.7665] }
+                { id: 2, date: new Date('2026-02-21'), country: 'Japon', location: 'Tokyo (Ginza)', coords: [35.6712, 139.7665], hotel: { name: "The B Ginza", room: "Check-in tardif", link: "https://www.google.com/maps/search/?api=1&query=The+B+Ginza" }, challenge: { title: "🌃 Arrivée Tokyo", desc: "Première soirée à Ginza", hint: "Sortie Haneda" }, activities: [
+                    { time: "19:45", title: "Arrivée Haneda", desc: "Atterrissage", coords: [35.5494, 139.7798] },
+                    { time: "20:30", title: "Départ vers Ginza", desc: "Transport vers l'hôtel", coords: [35.5494, 139.7798] },
+                    { time: "22:00", title: "Check-in The B Ginza", desc: "Installation", coords: [35.6712, 139.7665] },
+                    { time: "22:30", title: "Dîner léger", desc: "Konbini / snack", coords: [35.6712, 139.7665] }
                 ], suggestions: [] },
-                { id: 3, date: new Date('2026-02-22'), country: 'Japon', location: 'Tokyo (Asakusa/Ueno)', coords: [35.7148, 139.7967], hotel: { name: "The B Ginza", room: "Chambre Double", link: "https://www.google.com/maps/search/?api=1&query=The+B+Ginza" }, challenge: { title: "⛩️ Journée Asakusa", desc: "Photo au temple Senso-ji", hint: "Kaminarimon" }, activities: [
-                    { time: "08:30", title: "Départ vers Asakusa", desc: "Trajet depuis Ginza", coords: [35.6712, 139.7665] },
-                    { time: "09:00", title: "Temple Senso-ji", desc: "Sanctuaire d'Asakusa", coords: [35.7148, 139.7967] },
-                    { time: "11:00", title: "Rokku Broadway", desc: "Balade à Asakusa", coords: [35.7133, 139.7931] },
-                    { time: "11:30", title: "Kappabashi Street", desc: "Rue des ustensiles", coords: [35.7061, 139.7916] },
-                    { time: "12:00", title: "Déjeuner Ameyoko (Ueno)", desc: "Street food & marché", coords: [35.7088, 139.7746] },
-                    { time: "13:30", title: "Parc Ueno", desc: "Promenade", coords: [35.7140, 139.7741] },
-                    { time: "15:30", title: "Temple Nezu-jinja", desc: "Sanctuaire aux torii rouges", coords: [35.7165, 139.7615] },
-                    { time: "17:00", title: "Retour Ginza / Akihabara", desc: "Temps libre", coords: [35.7023, 139.7745] },
-                    { time: "20:00", title: "Dîner Ginza Sushi Sendou", desc: "Restaurant réservé", coords: [35.6712, 139.7665] }
+                { id: 3, date: new Date('2026-02-22'), country: 'Japon', location: 'Tokyo (Asakusa & Ueno)', coords: [35.7148, 139.7967], hotel: { name: "The B Ginza", room: "Nuit Tokyo", link: "https://www.google.com/maps/search/?api=1&query=The+B+Ginza" }, challenge: { title: "⛩️ Asakusa", desc: "Photo à Senso-ji", hint: "Kaminarimon" }, activities: [
+                    { time: "08:30", title: "Départ hôtel", desc: "Vers Asakusa", coords: [35.6712, 139.7665] },
+                    { time: "09:00", title: "Senso-ji + Asakusa-jinja", desc: "Tokyo traditionnel", coords: [35.7148, 139.7967] },
+                    { time: "10:30", title: "Rue Nakamise", desc: "Balade & souvenirs", coords: [35.7119, 139.7964] },
+                    { time: "11:00", title: "Kappabashi", desc: "Quartier cuisine", coords: [35.7090, 139.7908] },
+                    { time: "12:00", title: "Déjeuner Ameyoko", desc: "Ueno market", coords: [35.7088, 139.7746] },
+                    { time: "13:00", title: "Parc Ueno", desc: "Étang + Bentendo", coords: [35.7140, 139.7741] },
+                    { time: "15:00", title: "Nezu-jinja", desc: "Torii rouges", coords: [35.7165, 139.7615] },
+                    { time: "20:00", title: "Dîner omakase", desc: "Réservation confirmée", coords: [35.6712, 139.7665] }
                 ], suggestions: [] },
-                { id: 4, date: new Date('2026-02-23'), country: 'Japon', location: 'Tokyo', coords: [35.6712, 139.7665], hotel: { name: "The B Ginza", room: "Chambre Double", link: "https://www.google.com/maps/search/?api=1&query=The+B+Ginza" }, challenge: { title: "🛍️ Ginza & Odaiba", desc: "Shopping et baie de Tokyo", hint: "Vue de la baie" }, activities: [
-                    { time: "10:00", title: "Shopping à Ginza", desc: "Boutiques & grands magasins", coords: [35.6712, 139.7665] },
-                    { time: "12:00", title: "Marché de Tsukiji", desc: "Déjeuner", coords: [35.6655, 139.7708] },
-                    { time: "13:00", title: "Palais Impérial", desc: "Jardins et visite extérieure", coords: [35.6852, 139.7528] },
-                    { time: "16:30", title: "TeamLab Planets", desc: "Art numérique immersif", coords: [35.6442, 139.7954] },
-                    { time: "18:30", title: "Odaiba", desc: "Baie de Tokyo", coords: [35.6284, 139.7775] }
+                { id: 4, date: new Date('2026-02-23'), country: 'Japon', location: 'Tokyo (Ginza/Odaiba)', coords: [35.6586, 139.7454], hotel: { name: "The B Ginza", room: "Nuit Tokyo", link: "https://www.google.com/maps/search/?api=1&query=The+B+Ginza" }, challenge: { title: "👑 Tokyo classique + futuriste", desc: "Photo au Palais Impérial", hint: "Kokyo Gaien" }, activities: [
+                    { time: "09:30", title: "Départ Ginza", desc: "Shopping + Tsukiji", coords: [35.6712, 139.7665] },
+                    { time: "13:00", title: "Palais Impérial", desc: "Jardins Est", coords: [35.6852, 139.7528] },
+                    { time: "16:30", title: "TeamLab Planets", desc: "Entrée réservée", coords: [35.6490, 139.7890] },
+                    { time: "18:15", title: "Départ Odaiba", desc: "Coucher de soleil", coords: [35.6272, 139.7768] }
                 ], suggestions: [] },
-                { id: 5, date: new Date('2026-02-24'), country: 'Japon', location: 'Tokyo', coords: [35.6917, 139.7040], hotel: { name: "The B Ginza", room: "Chambre Double", link: "https://www.google.com/maps/search/?api=1&query=The+B+Ginza" }, challenge: { title: "🌆 Tokyo vibes", desc: "Photo à Shinjuku", hint: "Néons" }, activities: [
-                    { time: "10:30", title: "Akasaka", desc: "Balade quartier", coords: [35.6753, 139.7366] },
-                    { time: "12:00", title: "Sunshine 60", desc: "Observatoire panoramique", coords: [35.7295, 139.7180] },
-                    { time: "16:00", title: "Shinjuku", desc: "Quartier animé", coords: [35.6917, 139.7040] }
+                { id: 5, date: new Date('2026-02-24'), country: 'Japon', location: 'Tokyo (Shibuya/Shinjuku)', coords: [35.6595, 139.7005], hotel: { name: "The B Ginza", room: "Dernière nuit Tokyo", link: "https://www.google.com/maps/search/?api=1&query=The+B+Ginza" }, challenge: { title: "🔥 Tokyo néon", desc: "Photo au Shibuya Crossing", hint: "Vue en hauteur" }, activities: [
+                    { time: "09:30", title: "Départ Meiji-jingu", desc: "Parc Yoyogi + Harajuku", coords: [35.6764, 139.6993] },
+                    { time: "12:00", title: "Shibuya", desc: "Sky + crossing + Miyashita", coords: [35.6595, 139.7005] },
+                    { time: "15:30", title: "Shinjuku Gyoen", desc: "Pause verte", coords: [35.6852, 139.7100] },
+                    { time: "18:30", title: "Départ Shinjuku night", desc: "Gov building + Kabukicho", coords: [35.6938, 139.7034] }
                 ], suggestions: [] },
-                { id: 6, date: new Date('2026-02-25'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Vue Montagne", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "🏔️ Arrivée Hokkaido", desc: "Première vue sur la neige", hint: "Depuis l'hôtel" }, activities: [
-                    { time: "11:10", title: "Vol Tokyo → Asahikawa", desc: "Départ pour Hokkaido", coords: [35.5494, 139.7798] },
-                    { time: "12:50", title: "Arrivée Asahikawa", desc: "Récupération bagages", coords: [43.6708, 142.4537] },
-                    { time: "15:00", title: "Arrivée hôtel Furano", desc: "Installation", coords: [43.3421, 142.3832] }
+                { id: 6, date: new Date('2026-02-25'), country: 'Japon', location: 'Tokyo → Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Check-in Hitohana", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "❄️ Direction Hokkaido", desc: "Photo arrivée Furano", hint: "Devant l'hôtel" }, activities: [
+                    { time: "11:10", title: "Vol Tokyo → Asahikawa", desc: "Départ HND", coords: [35.5494, 139.7798] },
+                    { time: "13:30", title: "Train vers Furano", desc: "Transfert gare", coords: [43.7706, 142.3650] },
+                    { time: "16:00", title: "Check-in hôtel", desc: "Soirée détente", coords: [43.3421, 142.3832] }
                 ], suggestions: [] },
-                { id: 7, date: new Date('2026-02-26'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Vue Montagne", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "⛷️ Journée ski", desc: "Photo sur les pistes", hint: "Vue station" }, activities: [
-                    { time: "Journée", title: "Ski", desc: "Pistes de Furano", coords: [43.3340, 142.3620] },
-                    { time: "Soir", title: "Onsen", desc: "Bain thermal relaxant", coords: [43.3421, 142.3832] }
+                { id: 7, date: new Date('2026-02-26'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Séjour ski", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "⛷️ Ski day 1", desc: "Photo piste", hint: "Sommet" }, activities: [
+                    { time: "08:30", title: "Départ ski", desc: "Session matin", coords: [43.3400, 142.3800] },
+                    { time: "16:30", title: "Onsen", desc: "Récupération", coords: [43.3421, 142.3832] },
+                    { time: "19:00", title: "Dîner", desc: "Fromagerie & vin", coords: [43.3421, 142.3832] }
                 ], suggestions: [] },
-                { id: 8, date: new Date('2026-02-27'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Vue Montagne", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "🎿 Ningle Terrace", desc: "Ambiance hivernale", hint: "Cabanes illuminées" }, activities: [
-                    { time: "Journée", title: "Ski", desc: "Pistes de Furano", coords: [43.3340, 142.3620] },
-                    { time: "Fin de journée", title: "Ningle Terrace", desc: "Balade artisanale", coords: [43.3252, 142.3563] }
+                { id: 8, date: new Date('2026-02-27'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Séjour ski", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "🌲 Ningle Terrace", desc: "Photo ambiance neige", hint: "Lanternes" }, activities: [
+                    { time: "08:30", title: "Départ ski", desc: "Journée glisse", coords: [43.3400, 142.3800] },
+                    { time: "17:30", title: "Ningle Terrace", desc: "Balade boisée", coords: [43.3316, 142.3558] },
+                    { time: "19:00", title: "Ski nocturne", desc: "Option 27/28", coords: [43.3400, 142.3800] }
                 ], suggestions: [] },
-                { id: 9, date: new Date('2026-02-28'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Vue Montagne", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "🌙 Ski nocturne", desc: "Photo de nuit", hint: "Pistes éclairées" }, activities: [
-                    { time: "Journée", title: "Ski", desc: "Pistes de Furano", coords: [43.3340, 142.3620] },
-                    { time: "Soir", title: "Ski nocturne", desc: "Session de nuit", coords: [43.3340, 142.3620] }
+                { id: 9, date: new Date('2026-02-28'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Séjour ski", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "🍷 Furano slow day", desc: "Photo fromagerie", hint: "Dégustation" }, activities: [
+                    { time: "08:30", title: "Départ ski", desc: "Matinée", coords: [43.3400, 142.3800] },
+                    { time: "16:30", title: "Onsen", desc: "Détente", coords: [43.3421, 142.3832] },
+                    { time: "19:00", title: "Dîner", desc: "Spécialités locales", coords: [43.3421, 142.3832] }
                 ], suggestions: [] },
-                { id: 10, date: new Date('2026-03-01'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Vue Montagne", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "❄️ Dernière journée", desc: "Souvenir des pistes", hint: "Dernière descente" }, activities: [
-                    { time: "Journée", title: "Ski", desc: "Pistes de Furano", coords: [43.3340, 142.3620] }
+                { id: 10, date: new Date('2026-03-01'), country: 'Japon', location: 'Furano', coords: [43.3421, 142.3832], hotel: { name: "Winery Hotel Furano", room: "Dernière nuit Hokkaido", link: "https://www.google.com/maps/search/?api=1&query=Winery+Hotel+Furano" }, challenge: { title: "🧘 Ralentir", desc: "Photo repos", hint: "Moment calme" }, activities: [
+                    { time: "09:00", title: "Départ ski léger", desc: "Dernières descentes", coords: [43.3400, 142.3800] },
+                    { time: "15:00", title: "Repos", desc: "Préparation transfert", coords: [43.3421, 142.3832] }
                 ], suggestions: [] },
-                { id: 11, date: new Date('2026-03-02'), country: 'Japon', location: 'Furano → Kyoto', coords: [34.9858, 135.7588], hotel: { name: "Insomnia KYOTO OIKE", room: "Chambre Double", link: "https://www.google.com/maps/search/?api=1&query=Insomnia+Kyoto+Oike" }, challenge: { title: "🚆 Long trajet", desc: "Photo du voyage vers Kyoto", hint: "Dans le train" }, activities: [
-                    { time: "07:15", title: "Départ hôtel", desc: "Direction Furano station", coords: [43.3421, 142.3832] },
-                    { time: "07:41", title: "Train Furano station (Nemuro line)", desc: "Vers Takikawa", coords: null },
-                    { time: "09:02", title: "Takikawa → Sapporo (Lilac-Kamui)", desc: "Correspondance", coords: null },
-                    { time: "10:00", title: "Sapporo → aéroport Chitose", desc: "Ligne rapide Airport", coords: [43.0687, 141.3507] },
-                    { time: "11:35", title: "Arrivée New Chitose", desc: "Aéroport", coords: [42.7752, 141.6923] },
+                { id: 11, date: new Date('2026-03-02'), country: 'Japon', location: 'Furano → Kyoto', coords: [35.0116, 135.7681], hotel: { name: "Insomnia Kyoto Oike", room: "Check-in", link: "https://www.google.com/maps/search/?api=1&query=Insomnia+Kyoto+Oike" }, challenge: { title: "🏯 Arrivée Kyoto", desc: "Photo soirée tranquille", hint: "Quartier Oike" }, activities: [
+                    { time: "07:30", title: "Départ vers aéroport", desc: "Transfert Furano", coords: [43.3421, 142.3832] },
                     { time: "14:00", title: "Vol Sapporo → Osaka", desc: "Départ", coords: [42.7752, 141.6923] },
-                    { time: "16:05", title: "Arrivée Osaka", desc: "Transfert Kyoto", coords: [34.7855, 135.4382] },
-                    { time: "18:30", title: "Hôtel Kyoto", desc: "Installation", coords: [35.0116, 135.7600] }
+                    { time: "17:00", title: "Bus vers Kyoto", desc: "Dernier transfert", coords: [34.7855, 135.4382] },
+                    { time: "18:30", title: "Check-in hôtel", desc: "Soirée libre", coords: [35.0116, 135.7681] }
                 ], suggestions: [] },
-                { id: 12, date: new Date('2026-03-03'), country: 'Japon', location: 'Kyoto', coords: [35.0116, 135.7600], hotel: { name: "Insomnia KYOTO OIKE", room: "Chambre Double", link: "https://www.google.com/maps/search/?api=1&query=Insomnia+Kyoto+Oike" }, challenge: { title: "⛩️ Kyoto classique", desc: "Photo des temples", hint: "Kinkaku-ji" }, activities: [
-                    { time: "09:00", title: "Kinkaku-ji", desc: "Pavillon d'or", coords: [35.0394, 135.7292] },
-                    { time: "11:00", title: "Marché Nishiki", desc: "Découvertes culinaires", coords: [35.0050, 135.7649] },
-                    { time: "12:30", title: "Temple Kennin-ji", desc: "Temple zen", coords: [35.0006, 135.7759] },
-                    { time: "14:00", title: "Gion", desc: "Quartier traditionnel", coords: [35.0037, 135.7778] },
-                    { time: "15:30", title: "Kiyomizu-dera", desc: "Temple panoramique", coords: [34.9949, 135.7850] },
-                    { time: "17:15", title: "Kyoto Tower", desc: "Vue sur la ville", coords: [34.9875, 135.7593] }
+                { id: 12, date: new Date('2026-03-03'), country: 'Japon', location: 'Kyoto iconique', coords: [35.0116, 135.7681], hotel: { name: "Insomnia Kyoto Oike", room: "Nuit Kyoto", link: "https://www.google.com/maps/search/?api=1&query=Insomnia+Kyoto+Oike" }, challenge: { title: "🌸 Kyoto romantique", desc: "Photo à Kiyomizu-dera", hint: "Terrasse" }, activities: [
+                    { time: "09:00", title: "Kinkaku-ji", desc: "Temple d'or", coords: [35.0394, 135.7292] },
+                    { time: "10:30", title: "Ryoan-ji", desc: "Jardin zen", coords: [35.0345, 135.7182] },
+                    { time: "12:00", title: "Marché Nishiki", desc: "Pause midi", coords: [35.0048, 135.7643] },
+                    { time: "13:15", title: "Kennin-ji", desc: "Temple", coords: [35.0010, 135.7765] },
+                    { time: "14:30", title: "Départ Gion & Yasaka", desc: "Ruelles historiques", coords: [35.0037, 135.7788] },
+                    { time: "15:30", title: "Kiyomizu-dera", desc: "Incontournable", coords: [34.9949, 135.7850] },
+                    { time: "17:15", title: "Kyoto Tower", desc: "Coucher du soleil", coords: [34.9876, 135.7593] }
                 ], suggestions: [] },
-                { id: 13, date: new Date('2026-03-04'), country: 'Japon', location: 'Kyoto / Nara', coords: [34.6851, 135.8048], hotel: { name: "Insomnia KYOTO OIKE", room: "Chambre Double", link: "https://www.google.com/maps/search/?api=1&query=Insomnia+Kyoto+Oike" }, challenge: { title: "🦌 Nara", desc: "Photo avec les daims", hint: "Parc de Nara" }, activities: [
-                    { time: "07:00", title: "Fushimi Inari", desc: "Sanctuaire aux torii", coords: [34.9671, 135.7727] },
-                    { time: "14:00", title: "Parc de Nara", desc: "Balade et daims", coords: [34.6851, 135.8048] }
+                { id: 13, date: new Date('2026-03-04'), country: 'Japon', location: 'Nara', coords: [34.6851, 135.8048], hotel: { name: "Insomnia Kyoto Oike", room: "Retour Kyoto", link: "https://www.google.com/maps/search/?api=1&query=Insomnia+Kyoto+Oike" }, challenge: { title: "🦌 Nara day", desc: "Photo avec les cerfs", hint: "Parc de Nara" }, activities: [
+                    { time: "07:30", title: "Départ Kyoto", desc: "Train vers Nara", coords: [35.0116, 135.7681] },
+                    { time: "08:30", title: "Kasuga Taisha", desc: "Sanctuaire", coords: [34.6815, 135.8488] },
+                    { time: "10:15", title: "Todai-ji", desc: "Grand Bouddha", coords: [34.6890, 135.8398] },
+                    { time: "11:45", title: "Nigatsu-do", desc: "Point de vue", coords: [34.6913, 135.8427] },
+                    { time: "13:00", title: "Mochi Nakatanidou", desc: "Pause gourmande", coords: [34.6831, 135.8272] },
+                    { time: "15:30", title: "Retour Kyoto", desc: "Dîner libre", coords: [35.0116, 135.7681] }
                 ], suggestions: [] },
-                { id: 14, date: new Date('2026-03-05'), country: 'Japon', location: 'Kyoto → Osaka', coords: [34.6937, 135.5023], hotel: { name: "Centara Grand Hotel", room: "Chambre Deluxe", link: "https://www.google.com/maps/search/?api=1&query=Centara+Grand+Hotel+Osaka" }, challenge: { title: "🏙️ Osaka", desc: "Photo en ville", hint: "Namba" }, activities: [
-                    { time: "07:30", title: "Fushimi Inari", desc: "Dernier passage", coords: [34.9671, 135.7727] },
-                    { time: "10:00", title: "Chemin du Philosophe", desc: "Promenade", coords: [35.0267, 135.7964] },
-                    { time: "13:00", title: "Départ pour Osaka", desc: "Train", coords: [35.0116, 135.7600] },
-                    { time: "15:00", title: "Hôtel Osaka", desc: "Check-in", coords: [34.6595, 135.5009] },
-                    { time: "16:00", title: "Kasuga Taisha", desc: "Sanctuaire", coords: [34.6821, 135.8482] },
-                    { time: "19:30", title: "Dîner Namba", desc: "Quartier animé", coords: [34.6667, 135.5010] }
+                { id: 14, date: new Date('2026-03-05'), country: 'Japon', location: 'Kyoto → Osaka', coords: [34.6937, 135.5023], hotel: { name: "Hôtel Osaka", room: "Nuit Osaka", link: "https://www.google.com/maps/search/?api=1&query=Hotel+Osaka+Namba" }, challenge: { title: "🏯 Osaka", desc: "Photo château", hint: "Parc Osaka-jo" }, activities: [
+                    { time: "07:00", title: "Fushimi Inari", desc: "Torii tôt le matin", coords: [34.9671, 135.7727] },
+                    { time: "13:00", title: "Départ Osaka", desc: "Trajet depuis Kyoto", coords: [35.0116, 135.7681] },
+                    { time: "14:30", title: "Château d'Osaka", desc: "Visite", coords: [34.6873, 135.5262] },
+                    { time: "19:30", title: "Namba / Dotonbori", desc: "Soirée", coords: [34.6687, 135.5019] }
                 ], suggestions: [] },
-                { id: 15, date: new Date('2026-03-06'), country: 'International', location: 'Osaka → Manille', coords: [34.7855, 135.4382], hotel: { name: "Nuit à bord", room: "Vol Osaka → Manille", link: "#" }, challenge: { title: "🧳 Départ Philippines", desc: "Derniers souvenirs du Japon", hint: "Aéroport KIX" }, activities: [
-                    { time: "10:00", title: "Marché couvert", desc: "Derniers achats", coords: [34.6655, 135.5064] },
-                    { time: "11:30", title: "Temple Katsuo-ji", desc: "Daruma & jardins", coords: [34.8417, 135.4786] },
-                    { time: "16:30", title: "Aéroport KIX", desc: "Enregistrement", coords: [34.4320, 135.2304] },
-                    { time: "19:35", title: "Vol Osaka → Manille", desc: "Départ", coords: [34.4320, 135.2304] }
+                { id: 15, date: new Date('2026-03-06'), country: 'Japon', location: 'Osaka → Manille', coords: [14.5995, 120.9842], hotel: { name: "Vol de nuit", room: "Vers Manille", link: "#" }, challenge: { title: "🌏 Cap Philippines", desc: "Photo dernier spot Japon", hint: "Aéroport KIX" }, activities: [
+                    { time: "09:00", title: "Kuromon Market", desc: "Street food", coords: [34.6654, 135.5057] },
+                    { time: "11:30", title: "Temple Katsuo-ji", desc: "Daruma", coords: [34.8669, 135.4696] },
+                    { time: "16:30", title: "Départ vers KIX", desc: "Check-in vol", coords: [34.4342, 135.2440] },
+                    { time: "19:35", title: "Vol Osaka → Manille", desc: "Décollage", coords: [34.4342, 135.2440] }
                 ], suggestions: [] },
-                { id: 16, date: new Date('2026-03-07'), country: 'Philippines', location: 'Panglao', coords: [9.55, 123.77], hotel: { name: "Fox & The Firefly", room: "Cottage", link: "https://www.google.com/maps/search/?api=1&query=Fox+and+The+Firefly+Bohol" }, challenge: { title: "🌴 Arrivée Panglao", desc: "Photo des cascades", hint: "Chute d'eau" }, activities: [
-                    { time: "05:20", title: "Vol Manille → Panglao", desc: "Départ", coords: [14.51, 121.01] },
-                    { time: "11:00", title: "Cascades", desc: "Excursion", coords: null },
+                { id: 16, date: new Date('2026-03-07'), country: 'Philippines', location: 'Panglao', coords: [9.55, 123.77], hotel: { name: "Fox & The Firefly", room: "Cottage", link: "https://www.google.com/maps/search/?api=1&query=Fox+and+The+Firefly+Bohol" }, challenge: { title: "🌴 Panglao", desc: "Photo cascade", hint: "Dimiao" }, activities: [
+                    { time: "06:55", title: "Arrivée Panglao", desc: "Début séjour Philippines", coords: [9.5780, 123.8425] },
+                    { time: "09:00", title: "Départ cascades", desc: "Dimiao + Can-Umantad", coords: [9.9000, 124.1500] },
                     { time: "20:00", title: "Kayak lucioles", desc: "Soirée magique", coords: [9.6385, 124.0300] }
                 ], suggestions: [] },
-                { id: 17, date: new Date('2026-03-08'), country: 'Philippines', location: 'Bohol', coords: [9.8297, 124.1397], hotel: { name: "Fox & The Firefly", room: "Cottage", link: "https://www.google.com/maps/search/?api=1&query=Fox+and+The+Firefly+Bohol" }, challenge: { title: "🍫 Bohol", desc: "Photo Chocolate Hills", hint: "Belvédère" }, activities: [
-                    { time: "09:00", title: "Chocolate Hills", desc: "Visite", coords: [9.8297, 124.1397] },
+                { id: 17, date: new Date('2026-03-08'), country: 'Philippines', location: 'Bohol Nature', coords: [9.8297, 124.1397], hotel: { name: "Fox & The Firefly", room: "Cottage", link: "https://www.google.com/maps/search/?api=1&query=Fox+and+The+Firefly+Bohol" }, challenge: { title: "🍫 Bohol", desc: "Photo Chocolate Hills", hint: "Belvédère" }, activities: [
+                    { time: "09:00", title: "Chocolate Hills", desc: "Départ excursion", coords: [9.8297, 124.1397] },
                     { time: "10:30", title: "Tarsiers", desc: "Sanctuaire", coords: [9.6918, 124.0096] },
-                    { time: "14:00", title: "Danao Adventure Park", desc: "Parc d'aventure", coords: [9.9407, 124.1878] }
+                    { time: "13:00", title: "Danao Park", desc: "Nature & aventure", coords: [9.9407, 124.1878] },
+                    { time: "16:00", title: "Man Made Forest", desc: "Route panoramique", coords: [9.7330, 124.0700] }
                 ], suggestions: [] },
-                { id: 18, date: new Date('2026-03-09'), country: 'Philippines', location: 'Panglao', coords: [9.55, 123.77], hotel: { name: "Amorita Resort", room: "Suite Luxe", link: "https://www.google.com/maps/search/?api=1&query=Amorita+Resort+Bohol" }, challenge: { title: "🏝️ Alona Beach", desc: "Photo détente", hint: "Plage" }, activities: [
-                    { time: "Journée", title: "Alona Beach / massages", desc: "Repos", coords: [9.5483, 123.7764] }
+                { id: 18, date: new Date('2026-03-09'), country: 'Philippines', location: 'Amorita Resort', coords: [9.5483, 123.7764], hotel: { name: "Amorita Resort", room: "Suite Luxe", link: "https://www.google.com/maps/search/?api=1&query=Amorita+Resort+Bohol" }, challenge: { title: "💛 Slow honeymoon", desc: "Photo plage", hint: "Alona Beach" }, activities: [
+                    { time: "07:00", title: "Plongée Balicasag", desc: "Option matin", coords: [9.5191, 123.6811] },
+                    { time: "17:00", title: "Massage", desc: "Fin d'après-midi", coords: [9.5483, 123.7764] },
+                    { time: "19:30", title: "Dîner romantique plage", desc: "Soirée", coords: [9.5483, 123.7764] }
                 ], suggestions: [] },
-                { id: 19, date: new Date('2026-03-10'), country: 'Philippines', location: 'Panglao', coords: [9.55, 123.77], hotel: { name: "Amorita Resort", room: "Suite Luxe", link: "https://www.google.com/maps/search/?api=1&query=Amorita+Resort+Bohol" }, challenge: { title: "🐠 Balicasag", desc: "Plongée", hint: "Sous l'eau" }, activities: [
-                    { time: "Journée", title: "Plongée Balicasag", desc: "Sortie plongée", coords: [9.5191, 123.6811] }
+                { id: 19, date: new Date('2026-03-10'), country: 'Philippines', location: 'Amorita Resort', coords: [9.5483, 123.7764], hotel: { name: "Amorita Resort", room: "Suite Luxe", link: "https://www.google.com/maps/search/?api=1&query=Amorita+Resort+Bohol" }, challenge: { title: "🏝️ Journée détente", desc: "Photo coucher de soleil", hint: "Plage" }, activities: [
+                    { time: "06:00", title: "Excursion dauphins", desc: "Départ tôt", coords: [9.5300, 123.7500] },
+                    { time: "12:30", title: "Alona Beach", desc: "Temps libre", coords: [9.5483, 123.7764] },
+                    { time: "19:30", title: "Dîner libre", desc: "Mode slow", coords: [9.5483, 123.7764] }
                 ], suggestions: [] },
-                { id: 20, date: new Date('2026-03-11'), country: 'Philippines', location: 'Panglao', coords: [9.55, 123.77], hotel: { name: "Amorita Resort", room: "Suite Luxe", link: "https://www.google.com/maps/search/?api=1&query=Amorita+Resort+Bohol" }, challenge: { title: "🐬 Dauphins", desc: "Sortie matinale", hint: "Lever du soleil" }, activities: [
-                    { time: "Matin", title: "Dauphins", desc: "Excursion en mer", coords: [9.5300, 123.7500] },
-                    { time: "Soir", title: "Dîner romantique plage", desc: "Soirée spéciale", coords: [9.5483, 123.7764] }
+                { id: 20, date: new Date('2026-03-11'), country: 'Philippines', location: 'Amorita Resort', coords: [9.5483, 123.7764], hotel: { name: "Amorita Resort", room: "Suite Luxe", link: "https://www.google.com/maps/search/?api=1&query=Amorita+Resort+Bohol" }, challenge: { title: "🐠 Mer & spa", desc: "Photo snorkeling", hint: "Balicasag" }, activities: [
+                    { time: "07:00", title: "Plongée / snorkeling", desc: "Sortie en mer", coords: [9.5191, 123.6811] },
+                    { time: "16:30", title: "Massage duo", desc: "Détente", coords: [9.5483, 123.7764] },
+                    { time: "19:30", title: "Dîner romantique", desc: "Plage", coords: [9.5483, 123.7764] }
                 ], suggestions: [] },
-                { id: 21, date: new Date('2026-03-12'), country: 'Philippines', location: 'Panglao', coords: [9.55, 123.77], hotel: { name: "Amorita Resort", room: "Suite Luxe", link: "https://www.google.com/maps/search/?api=1&query=Amorita+Resort+Bohol" }, challenge: { title: "💆 Détente", desc: "Journée relax", hint: "Massages" }, activities: [
-                    { time: "Journée", title: "Détente / massages", desc: "Repos au resort", coords: [9.5483, 123.7764] }
+                { id: 21, date: new Date('2026-03-12'), country: 'Philippines', location: 'Amorita Resort', coords: [9.5483, 123.7764], hotel: { name: "Amorita Resort", room: "Dernière nuit", link: "https://www.google.com/maps/search/?api=1&query=Amorita+Resort+Bohol" }, challenge: { title: "✨ Dernier jour", desc: "Photo finale resort", hint: "Vue mer" }, activities: [
+                    { time: "09:00", title: "Matinée libre", desc: "Repos total", coords: [9.5483, 123.7764] },
+                    { time: "17:00", title: "Préparation départ", desc: "Bagages", coords: [9.5483, 123.7764] }
                 ], suggestions: [] },
-                { id: 22, date: new Date('2026-03-13'), country: 'International', location: 'Panglao → Paris', coords: [14.51, 121.01], hotel: { name: "Nuit à bord", room: "Vol retour", link: "#" }, challenge: { title: "👋 Retour", desc: "Dernières photos des Philippines", hint: "Aéroport" }, activities: [
-                    { time: "18:50", title: "Vol Panglao → Manille", desc: "Départ", coords: [9.55, 123.77] },
-                    { time: "23:30", title: "Vol Manille → Dubaï", desc: "Correspondance", coords: [14.51, 121.01] }
+                { id: 22, date: new Date('2026-03-13'), country: 'International', location: 'Panglao → Manille → Dubaï', coords: [14.51, 121.01], hotel: { name: "Nuit à bord", room: "Vol retour", link: "#" }, challenge: { title: "👋 Retour", desc: "Dernière photo des Philippines", hint: "Aéroport" }, activities: [
+                    { time: "18:50", title: "Vol Panglao → Manille", desc: "Départ", coords: [9.5780, 123.8425] },
+                    { time: "23:30", title: "Vol Manille → Dubaï", desc: "Long-courrier", coords: [14.51, 121.01] }
                 ], suggestions: [] },
-                { id: 23, date: new Date('2026-03-14'), country: 'France', location: 'Arrivée Paris', coords: [48.8566, 2.3522], hotel: { name: "Maison", room: "Chez vous", link: "#" }, challenge: { title: "🏠 Retour", desc: "Fin du voyage", hint: "Hall CDG" }, activities: [
+                { id: 23, date: new Date('2026-03-14'), country: 'France', location: 'Dubaï → Paris', coords: [48.8566, 2.3522], hotel: { name: "Maison", room: "Retour", link: "#" }, challenge: { title: "🏠 Paris", desc: "Fin du voyage", hint: "Arrivées CDG" }, activities: [
                     { time: "07:50", title: "Vol Dubaï → Paris", desc: "Départ", coords: [25.2532, 55.3657] },
-                    { time: "12:25", title: "Arrivée Paris", desc: "Fin du voyage", coords: [49.0097, 2.5479] }
+                    { time: "12:25", title: "Arrivée Paris", desc: "Fin de lune de miel", coords: [49.0097, 2.5479] }
                 ], suggestions: [] }
             ],
             hotels: [
